@@ -1,4 +1,4 @@
-import { Product, Tag } from '.';
+import { ProductJson } from '.';
 export class ProductResponse {
     status: string;
     message: string;
@@ -8,15 +8,5 @@ export class ProductResponse {
         this.status = ''
         this.message = ''
         this.product = new ProductJson();
-    }
-}
-
-class ProductJson {
-    product: Product;
-    tags: Tag[];
-
-    constructor() {
-        this.product = new Product();
-        this.tags = [];
     }
 }

@@ -1,18 +1,20 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Product } from 'src/app/models';
 import { ProductService } from 'src/app/services/product.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-products-page',
   templateUrl: './products-page.component.html',
   styleUrls: ['./products-page.component.scss']
 })
-export class ProductsPageComponent implements OnInit {
+export class ProductsPageComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['image', 'name', 'sku', 'price', 'see'];
   dataSource!: MatTableDataSource<Product>;
+  productsSubs: Subscription = new Subscription;
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
   @ViewChild(MatSort) sort: MatSort | null = null;
@@ -42,12 +44,12 @@ export class ProductsPageComponent implements OnInit {
     )
   }
 
-  goToProductDetail(product: Product) {
-    console.log(product);
-  }
-
   settingPaginatorSort() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  ngOnDestroy(): void {
+    this.productsSubs.unsubscribe();
   }
 }

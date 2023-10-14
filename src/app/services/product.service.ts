@@ -29,4 +29,8 @@ export class ProductService extends BaseService {
   update(id: string, product: ProductResponse) {
     return this.put(`product/${id}`, product);
   }
+
+  deleteProduct(id: string) {
+    return this.delete('product/', id);
+  }
 }
