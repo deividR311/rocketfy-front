@@ -16,14 +16,6 @@ export class BaseService {
         return this.http.get(`${this.path}${url}`);
     }
 
-    getMethod(url: string): any {
-        return this.http.get(`${this.path}${url}`);
-    }
-
-    getById(url: any, id: any): any {
-        return this.http.get(`${this.path}${url}${id}`);
-    }
-
     post(url: string, data: any): any {
         return this.http.post(`${this.path}${url}`, data);
     }
