@@ -3,34 +3,35 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { BaseService } from './settings/base.service';
-import { ProductResponse, ProductsResponse } from '../models';
+import { ApiResponse, Product } from '../models';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProductService extends BaseService {
 
   constructor(http: HttpClient) {
     super(http);
   }
 
-  getAll(): Observable<ProductsResponse> {
+  getAll(): Observable<ApiResponse> {
     return this.get('product/getAll');
   }
 
-  getProduct(id: string): Observable<ProductResponse> {
+  getProduct(id: string | null): Observable<ApiResponse> {
     return this.get(`product/${id}`);
   }
 
-  create(product: ProductResponse) {
+  create(product: Product): Observable<ApiResponse> {
     return this.post('product/create', product);
   }
 
-  update(id: string, product: ProductResponse) {
+  update(id: string, product: Product): Observable<ApiResponse> {
     return this.put(`product/${id}`, product);
   }
 
-  deleteProduct(id: string) {
+  deleteProduct(id: string | undefined) {
     return this.delete('product/', id);
   }
 }

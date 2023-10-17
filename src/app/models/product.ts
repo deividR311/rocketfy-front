@@ -1,5 +1,7 @@
+import { Tag } from 'src/app/models';
+
 export class Product {
-    _id: string;
+    _id?: string;
     name: string;
     description: string;
     sku: string;
@@ -9,9 +11,9 @@ export class Product {
     created_at: string;
     updated_at: string;
     __v: number;
+    tags: Tag[];
 
     constructor() {
-        this._id = '';
         this.name = '';
         this.description = '';
         this.sku = '';
@@ -21,6 +23,7 @@ export class Product {
         this.created_at = '';
         this.updated_at = '';
         this.__v = 0;
+        this.tags = [];
     }
 }
 

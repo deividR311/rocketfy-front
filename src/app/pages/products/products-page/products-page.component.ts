@@ -37,8 +37,8 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
   getProducts() {
     this.productService.getAll().subscribe(
       res => {
-        const { products } = res;
-        this.dataSource = new MatTableDataSource(products);
+        const { response } = res;
+        this.dataSource = new MatTableDataSource(response);
         this.settingPaginatorSort();
       }
     )

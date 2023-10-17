@@ -1,1 +1,87 @@
-<p>new-product-page works!</p>
+<div class="my-3">
+    <button mat-raised-button color="primary" class="my-2" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        Go back
+    </button>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>New Product</mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="productForm" (ngSubmit)="formValidations()">
+            <mat-card-content>
+                <div class="grid grid-cols-3">
+                    <div class="col-auto p-5">
+                        <mat-form-field>
+                            <mat-label>Name</mat-label>
+                            <input matInput type="text" placeholder="Name" formControlName="name">
+                            <mat-error *ngIf="isValidField('name')">{{ getFieldError('Name') }}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Description</mat-label>
+                            <input matInput type="text" placeholder="Description" formControlName="description">
+                            <mat-error *ngIf="isValidField('description')">{{ getFieldError('Description')
+                                }}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-auto p-5">
+                        <mat-form-field>
+                            <mat-label>Image</mat-label>
+                            <input matInput type="text" placeholder="Image" formControlName="image">
+                            <mat-error *ngIf="isValidField('image')">{{ getFieldError('Image') }}</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Sku</mat-label>
+                            <input matInput type="text" placeholder="Sku" formControlName="sku">
+                            <mat-error *ngIf="isValidField('sku')">{{ getFieldError('Sku') }}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-auto p-5">
+                        <mat-form-field>
+                            <mat-label>Price</mat-label>
+                            <input matInput type="number" placeholder="Price" formControlName="price">
+                            <mat-error *ngIf="isValidField('price')">{{ getFieldError('Price') }}</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Stock</mat-label>
+                            <input matInput type="number" placeholder="Stock" formControlName="stock">
+                            <mat-error *ngIf="isValidField('stock')">{{ getFieldError('Stock') }}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 p-5">
+                    <form>
+                        <mat-form-field class="example-chip-list w-full">
+                            <mat-label>Tags</mat-label>
+                            <mat-chip-grid #chipGrid>
+                                <mat-chip-row *ngFor="let tagSelected of chipSelectedTags"
+                                    (removed)="removetag(tagSelected)">
+                                    {{tagSelected.name}}
+                                    <button matChipRemove>
+                                        <mat-icon>cancel</mat-icon>
+                                    </button>
+                                </mat-chip-row>
+                            </mat-chip-grid>
+                            <input placeholder="New Tag..." #tagInput [formControl]="tagCtrl"
+                                [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                (matChipInputTokenEnd)="add($event)" />
+                            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="tagSelected($event)">
+                                <mat-option *ngFor="let tagName of filteredTags | async" [value]="tagName">
+                                    {{tagName}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </form>
+                    <span class="tags-valid" *ngIf="chipSelectedTagsEmpty">
+                        Minimum one tag is required
+                    </span>
+                </div>
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <button mat-button [routerLink]="['/products']">Cancel</button>
+                <button mat-button type="submit">Save</button>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>

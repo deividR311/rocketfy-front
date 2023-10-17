@@ -8,6 +8,7 @@ import { ProductPageComponent } from './product-page/product-page.component';
 import { ProductsPageComponent } from './products-page/products-page.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,7 +22,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     ProductsRoutingModule,
     MaterialModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class ProductsModule { }

@@ -28,6 +28,10 @@ export class HTTPInterceptor implements HttpInterceptor {
                         this.openSnackBar('Request no valido');
                         break;
 
+                    case HttpStatusCode.NOT_ACCEPTABLE:
+                        this.openSnackBar('Datos no validos');
+                        break;
+
                     default:
                         break;
                 }

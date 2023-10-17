@@ -24,7 +24,7 @@ export class BaseService {
         return this.http.put(`${this.path}${url}`, data);
     }
 
-    delete(url: string, id: string) {
+    delete(url: string, id: string | undefined) {
         return this.http.delete(`${this.path}${url}${id}`);
     }
 }

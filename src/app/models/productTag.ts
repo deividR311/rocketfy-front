@@ -1,11 +1,11 @@
 import { Tag } from '.';
 export class ProductTag {
-    _id: string;
-    productId: string;
+    _id?: string;
+    productId?: string;
     tagId: Tag;
-    __v: number;
-    created_at: string;
-    updatedAt: string;
+    __v?: number;
+    created_at?: string;
+    updatedAt?: string;
 
     constructor() {
         this._id = '';
