@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Product, ProductTag, Tag } from 'src/app/models';
+import { Product, ProductTag } from 'src/app/models';
 import { ProductService } from 'src/app/services/product.service';
 import { CustomDialogComponent } from 'src/app/shared/components/custom-dialog/custom-dialog.component';
 

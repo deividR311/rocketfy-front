@@ -27,7 +27,7 @@ export class ProductService extends BaseService {
     return this.post('product/create', product);
   }
 
-  update(id: string, product: Product): Observable<ApiResponse> {
+  update(id: string | null, product: Product): Observable<ApiResponse> {
     return this.put(`product/${id}`, product);
   }
 

@@ -55,7 +55,7 @@
                             <mat-label>Tags</mat-label>
                             <mat-chip-grid #chipGrid>
                                 <mat-chip-row *ngFor="let tagSelected of chipSelectedTags"
-                                    (removed)="removetag(tagSelected)">
+                                    (removed)="removeTag(tagSelected)">
                                     {{tagSelected.name}}
                                     <button matChipRemove>
                                         <mat-icon>cancel</mat-icon>
@@ -65,7 +65,7 @@
                             <input placeholder="New Tag..." #tagInput [formControl]="tagCtrl"
                                 [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                (matChipInputTokenEnd)="add($event)" />
+                                (matChipInputTokenEnd)="addTag($event)" />
                             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="tagSelected($event)">
                                 <mat-option *ngFor="let tagName of filteredTags | async" [value]="tagName">
                                     {{tagName}}
@@ -79,7 +79,7 @@
                 </div>
             </mat-card-content>
             <mat-card-actions align="end">
-                <button mat-button [routerLink]="['/products']">Cancel</button>
+                <button mat-button (click)="goBack()">Cancel</button>
                 <button mat-button type="submit">Save</button>
             </mat-card-actions>
         </form>
